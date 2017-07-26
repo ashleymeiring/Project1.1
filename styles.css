@@ -1,0 +1,174 @@
+html, body{
+	font-size:10px;
+	font-family: "Arial"
+}
+
+.container{
+	width:90%;
+	display:grid;
+	grid-template-columns:minmax(5rem, 1fr) minmax(5rem, 1fr) minmax(10rem, 2fr) minmax(5rem, 1fr) minmax(5rem, 1fr) minmax(7rem, auto) minmax(7rem, auto);
+	grid-template-rows: auto auto auto auto auto auto;
+	grid-row-gap:3rem;
+}
+
+.header{
+	font-size:1.5rem;
+	font-weight: bold;
+	justify-self:center;
+}
+
+.status_descr{
+	align-self: center;
+	font-size: 1.3rem;
+}
+
+
+/*** INDICATOR BASE ***/
+.indicator{
+	width: 5.1rem;
+    height: 5.1rem;	
+	background: #E4E4E7;
+	border-radius: 50%;
+	justify-self:center;
+}
+
+
+/*** INDICATORS COLOURS ***/
+:before{
+	content: "";
+	width:3.5rem;
+	height:3.5rem;
+	border-radius:50%;
+	position:absolute;
+	margin:0.8rem 0 0 0.8rem;
+}
+
+.green:before { 
+	background: #3AB392;
+}
+
+.red:before { 
+	background: #E55368;
+}
+
+.blue:before { 
+	background: #3B81C4;
+}
+
+.yellow:before { 
+	background: #F2AC5D;
+}
+
+.grey:before { 
+	background: #E4E4E7;
+}
+
+
+/*** INDICATOR ICONS ***/
+:after{
+	position:absolute;
+	padding:1.2rem 0 0 1.2rem;
+}
+
+.passed:after { 
+    content: url(icons/passed.png);
+}
+
+.error:after { 
+    content: url(icons/error.png);
+}
+
+.running:after { 
+    content: url(icons/running.png);
+}
+
+.pending:after { 
+    content: url(icons/pending.png);
+}
+
+
+/*** PROGRESS BARS ***/
+progress{
+	width: 100%;
+	height:1rem;
+	border: solid 0rem #E4E4E7;
+	align-self: center;
+}
+
+.bar_bg{
+	background:#E4E4E7;
+	height:2rem;
+	align-self: center;
+}
+
+.passed_bar::-webkit-progress-value {
+    background: #3AB392;
+}
+
+.running_bar::-webkit-progress-value {
+    background: #3B81C4;
+}
+
+.no_bar::-webkit-progress-value {
+    opacity:0;
+}
+
+.failed_bar::-webkit-progress-value {
+    background: #E55368;
+}
+
+progress::-webkit-progress-bar {
+	background: #E4E4E7;
+}
+
+
+/*** HEADERS ***/
+#task_header_1{grid-area:1/1/2/3;}
+#task_header_2{grid-area:1/3/2/4;}
+#task_header_3{grid-area:1/4/2/6;}
+#status_header{grid-area:1/6/2/8;}
+
+/*** PROGRESS BAR 1 ***/
+#start_1{grid-area: 2/1/3/3;}
+#middle_1{grid-area:2/3/3/4;}
+#end_1{grid-area:2/4/3/6;}
+#bar_bg_1{grid-area:2/2/3/5;}
+#bar_1{grid-area:2/2/3/5;}
+#status_indicator_1{grid-area:2/6/3/7;}
+#status_descr_1{grid-area:2/7/3/8;}
+
+/*** PROGRESS BAR 2 ***/
+#start_2{grid-area:3/1/4/3;}
+#middle_2{grid-area:3/3/4/4;}
+#end_2{grid-area:3/4/4/6;}
+#bar_bg_2{grid-area:3/2/4/5;}
+#bar_2{grid-area:3/2/4/5;}
+#status_indicator_2{grid-area:3/6/4/7;}
+#status_descr_2{grid-area:3/7/4/8;}
+
+/*** PROGRESS BAR 3 ***/
+#start_3{grid-area:4/1/5/3;}
+#middle_3{grid-area:4/3/5/4;}
+#end_3{grid-area:4/4/5/6;}
+#bar_bg_3{grid-area:4/2/5/5;}
+#bar_3{grid-area:4/2/5/5;}
+#status_indicator_3{grid-area:4/6/5/7;}
+#status_descr_3{grid-area:4/7/5/8;}
+
+/*** PROGRESS BAR 4 ***/
+#start_4{grid-area:5/1/6/3;}
+#middle_4{grid-area:5/3/6/4;}
+#end_4{grid-area:5/4/6/6;}
+#bar_bg_4{grid-area:5/2/6/5;}
+#bar_4{grid-area:5/2/6/5;}
+#status_indicator_4{grid-area:5/6/6/7;}
+#status_descr_4{grid-area:5/7/6/8;}
+
+/*** PROGRESS BAR 5 ***/
+#start_5{grid-area:6/1/7/3;}
+#middle_5{grid-area:6/3/7/4;}
+#end_5{grid-area:6/4/7/6;}
+#bar_bg_5{grid-area:6/2/7/5;}
+#bar_5{grid-area:6/2/7/5;}
+#status_indicator_5{grid-area:6/6/7/7;}
+#status_descr_5{grid-area:6/7/7/8;}

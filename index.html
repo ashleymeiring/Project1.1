@@ -1,424 +1,58 @@
 <!DOCTYPE html>
 <HTML lang="eng">
 	<head>
+		<link rel="stylesheet" href="styles.css">
 		<title>Progress</title>
-		<style>
-			html, body{
-				font-size:10px;
-				font-family: "Calibri"
-			}
-
-			.progress_container{
-				width:90%;
-				display:grid;
-				grid-template-columns:minmax(5rem, 1fr) minmax(5rem, 1fr) minmax(10rem, 2fr) minmax(5rem, 1fr) minmax(5rem, 1fr) minmax(5rem, 1fr) minmax(5rem, 1fr);
-				grid-template-rows: auto auto auto auto auto auto;
-				grid-row-gap:3rem;
-			}
-
-			.header{
-				justify-self:center;
-			}
-
-			.status_descr{
-				align-self: center;
-				font-size: 2rem;
-			}
-
-			.passed_indicator{
-				width: 5.1rem;
-				height: 5.1rem;
-				background: #E4E4E7;
-				border-radius: 50%;
-				justify-self:center;
-			}
-
-			.default_indicator{
-				width: 5.1rem;
-				height: 5.1rem;
-				background: #E4E4E7;
-				border-radius: 50%;
-				justify-self:center;
-			}
-
-			.running_indicator{
-				width: 5.1rem;
-				height: 5.1rem;
-				background: #E4E4E7;
-				border-radius: 50%;
-				justify-self:center;
-			}
-
-			.pending_indicator{
-				width: 5.1rem;
-				height: 5.1rem;
-				background: #E4E4E7;
-				border-radius: 50%;
-				justify-self:center;
-			}
-
-			.failed_indicator{
-				width: 5.1rem;
-				height: 5.1rem;
-				background: #E4E4E7;
-				border-radius: 50%;
-				justify-self:center;
-			}
-
-			.passed_indicator:before { 
-				content: url(icons/green.png);
-				position:absolute;
-				padding-left:0.8rem;
-				padding-top:0.8rem;  
-			}
-
-			.default_indicator:before { 
-				content: url(icons/grey.png);
-				position:absolute;
-				padding-left:0.8rem;
-				padding-top:0.8rem;  
-			}
-
-			.running_indicator:before { 
-				content: url(icons/blue.png);
-				position:absolute;
-				padding-left:0.8rem;
-				padding-top:0.8rem;  
-			}
-
-			.pending_indicator:before { 
-				content: url(icons/yellow.png);
-				position:absolute;
-				padding-left:0.8rem;
-				padding-top:0.8rem;  
-			}
-
-			.failed_indicator:before { 
-				content: url(icons/red.png);
-				position:absolute;
-				padding-left:0.8rem;
-				padding-top:0.8rem;  
-			} 
-
-			.passed_bar{
-				width: 100%;
-				height:1rem;
-				border: solid 0rem #E4E4E7;
-				align-self: center;
-			}
-
-			.passed_bar::-webkit-progress-value {
-				background: #3AB392;
-			}
-
-			.running_bar{
-				width: 100%;
-				height:1rem;
-				border: solid 0rem #E4E4E7;
-				align-self: center;
-			}
-
-			.running_bar::-webkit-progress-value {
-				background: #3B81C4;
-			}
-
-			.no_bar{
-				width: 100%;
-				height:1rem;
-				border: solid 0rem #E4E4E7;
-				align-self: center;
-				opacity:0;
-			}
-
-			.no_bar::-webkit-progress-value {
-				opacity:0;
-			}
-
-			.failed_bar{
-				width: 100%;
-				height:1rem;
-				border: solid 0rem #E4E4E7;
-				align-self: center;
-				
-
-			}
-
-			.failed_bar::-webkit-progress-value {
-				background: #E55368;
-			}
-
-			.bar_bg{
-				background:#E4E4E7;
-				height:2rem;
-				align-self: center;
-			}
-
-			.circle_bg{
-				width: 5.1rem;
-				height: 5.1rem;
-				background: #E4E4E7;
-				border-radius: 50%;
-				justify-self:center;
-			}
-
-			progress::-webkit-progress-bar {
-				background: #E4E4E7;
-			}
-
-			/* HEADERS */
-
-			#task_header_1{
-				grid-column: 1 / 3;
-				grid-row: 1 / 2;
-			}
-
-			#task_header_2{
-				grid-column: 3 / 4;
-				grid-row: 1 / 2;
-			}
-
-			#task_header_3{
-				grid-column: 4 / 6;
-				grid-row: 1 / 2;
-			}
-
-			#status_header{
-				grid-column: 6 / 8;
-				grid-row: 1 / 2;
-			}
-
-			/* PROGRESS BAR 1 */
-			#start_1{
-				grid-column: 1 / 3;
-				grid-row: 2 / 3;
-			}
-
-			#middle_1{
-				grid-column: 3 / 4;
-				grid-row: 2 / 3;
-			}
-
-			#end_1{
-				grid-column: 4 / 6;
-				grid-row: 2 / 3;
-			}
-
-			#bar_bg_1{
-				grid-column: 2 / 5;
-				grid-row: 2 / 3;
-			}
-
-			#bar_1{
-				grid-column: 2 / 5 ;
-				grid-row: 2 / 3;
-			}
-
-			#status_indicator_1{
-				grid-column: 6 / 7 ;
-				grid-row: 2 / 3;
-			}
-
-			#status_descr_1{
-				grid-column: 7 / 8 ;
-				grid-row: 2 / 3;
-			}
-
-			/* PROGRESS BAR 2 */
-			#start_2{
-				grid-column: 1 / 3;
-				grid-row: 3 / 4;
-			}
-
-			#middle_2{
-				grid-column: 3 / 4;
-				grid-row: 3 / 4;
-			}
-
-			#end_2{
-				grid-column: 4 / 6;
-				grid-row: 3 / 4;
-			}
-
-			#bar_bg_2{
-				grid-column: 2 / 5;
-				grid-row: 3 / 4;
-			}
-
-			#bar_2{
-				grid-column: 2 / 5 ;
-				grid-row: 3 / 4;
-			}
-
-			#status_indicator_2{
-				grid-column: 6 / 7 ;
-				grid-row: 3 / 4;
-			}
-
-			#status_descr_2{
-				grid-column: 7 / 8 ;
-				grid-row: 3 / 4;
-			}
-
-			/* PROGRESS BAR 3 */
-			#start_3{
-				grid-column:1 / 3;
-				grid-row: 4 / 5;
-			}
-
-			#middle_3{
-				grid-column:3 / 4;
-				grid-row:4 / 5;
-			}
-
-			#end_3{
-				grid-column: 4 / 6;
-				grid-row: 4 / 5;
-			}
-
-			#bar_bg_3{
-				grid-column: 2 / 5;
-				grid-row: 4 / 5;
-			}
-
-			#bar_3{
-				grid-column: 2 / 5;
-				grid-row: 4 / 5;
-			}
-
-			#status_indicator_3{
-				grid-column: 6 / 7 ;
-				grid-row: 4 / 5;
-			}
-
-			#status_descr_3{
-				grid-column: 7 / 8 ;
-				grid-row: 4 / 5;
-			}
-
-			/* PROGRESS BAR 4 */
-			#start_4{
-				grid-column:1 / 3;
-				grid-row: 5 / 6;
-			}
-
-			#middle_4{
-				grid-column:3 / 4;
-				grid-row:5 / 6;
-			}
-
-			#end_4{
-				grid-column: 4 / 6;
-				grid-row: 5 / 6;
-			}
-
-			#bar_bg_4{
-				grid-column: 2 / 5;
-				grid-row: 5 / 6;
-			}
-
-			#bar_4{
-				grid-column: 2 / 5;
-				grid-row: 5 / 6;
-			}
-
-			#status_indicator_4{
-				grid-column: 6 / 7 ;
-				grid-row: 5 / 6;
-			}
-
-			#status_descr_4{
-				grid-column: 7 / 8 ;
-				grid-row: 5 / 6;
-			}
-
-			/* PROGRESS BAR 5 */
-			#start_5{
-				grid-column:1 / 3;
-				grid-row: 6 / 7;
-			}
-
-			#middle_5{
-				grid-column:3 / 4;
-				grid-row:6 / 7;
-			}
-
-			#end_5{
-				grid-column: 4 / 6;
-				grid-row: 6 / 7;
-			}
-
-			#bar_bg_5{
-				grid-column: 2 / 5;
-				grid-row: 6 / 7;
-			}
-
-			#bar_5{
-				grid-column: 2 / 5;
-				grid-row: 6 / 7;
-			}
-
-			#status_indicator_5{
-				grid-column: 6 / 7 ;
-				grid-row: 6 / 7;
-			}
-
-			#status_descr_5{
-				grid-column: 7 / 8 ;
-				grid-row: 6 / 7;
-			}
-		</style>
 	</head>
-	<body>
-		<div class="progress_container">
-			<h1 class="header" id="task_header_1">Task 1</h1>
-			<h1 class="header" id="task_header_2">Task 2</h1>
-			<h1 class="header" id="task_header_3">Task 3</h1>
-			<h1 class="header" id="status_header">Status</h1>
+	<body class="container">
+			<div class="header" id="task_header_1">Task 1</div>
+			<div class="header" id="task_header_2">Task 2</div>
+			<div class="header" id="task_header_3">Task 3</div>
+			<div class="header" id="status_header">Status</div>
 		
 			<!-- BAR 1: pending -->
 			<div class="bar_bg" id="bar_bg_1"></div>
-			<div class="pending_indicator" id="start_1"></div>
-			<div class="default_indicator" id="middle_1"></div>
-			<div class="default_indicator" id="end_1"></div>
+			<div class="indicator yellow pending" id="start_1"></div>
+			<div class="indicator grey" id="middle_1"></div>
+			<div class="indicator grey" id="end_1"></div>
 			<progress class="no_bar" id="bar_1" max="100" value="0"></progress>
-			<div class="pending_indicator" id="status_indicator_1"></div>
-			<div class="status_descr" id="status_descr_1">PENDING</div>
+			<div class="yellow pending" id="status_indicator_1"></div>
+			<div class="status_descr" id="status_descr_1">Pending</div>
 		
 			<!-- BAR 2: Step 1 running -->
 			<div class="bar_bg" id="bar_bg_2"></div>
-			<div class="running_indicator" id="start_2"></div>
-			<div class="default_indicator" id="middle_2"></div>
-			<div class="default_indicator" id="end_2"></div>
+			<div class="indicator blue running" id="start_2"></div>
+			<div class="indicator default" id="middle_2"></div>
+			<div class="indicator default" id="end_2"></div>
 			<progress class="running_bar" id="bar_2" max="100" value="25"></progress>
-			<div class="running_indicator" id="status_indicator_2"></div>
-			<div class="status_descr" id="status_descr_2">RUNNING</div>		
+			<div class="blue running" id="status_indicator_2"></div>
+			<div class="status_descr" id="status_descr_2">Running</div>		
 	
 			<!-- BAR 3: All steps passed -->
 			<div class="bar_bg" id="bar_bg_3"></div>
-			<div class="passed_indicator" id="start_3"></div>
-			<div class="passed_indicator" id="middle_3"></div>
-			<div class="passed_indicator" id="end_3"></div>
+			<div class="indicator green passed" id="start_3"></div>
+			<div class="indicator green passed" id="middle_3"></div>
+			<div class="indicator green passed" id="end_3"></div>
 			<progress class="passed_bar" id="bar_3" max="100" value="100"></progress>
-			<div class="passed_indicator" id="status_indicator_3"></div>
-			<div class="status_descr" id="status_descr_3">PASSED</div>	
+			<div class="green passed" id="status_indicator_3"></div>
+			<div class="status_descr" id="status_descr_3">Passed</div>	
 			
 			<!-- BAR 4: failed step 1 -->
 			<div class="bar_bg" id="bar_bg_4"></div>
-			<div class="failed_indicator" id="start_4"></div>
-			<div class="default_indicator" id="middle_4"></div>
-			<div class="default_indicator" id="end_4"></div>
+			<div class="indicator red error" id="start_4"></div>
+			<div class="indicator grey" id="middle_4"></div>
+			<div class="indicator grey" id="end_4"></div>
 			<progress class="no_bar" id="bar_4" max="100" value="0"></progress>
-			<div class="failed_indicator" id="status_indicator_4"></div>
-			<div class="status_descr" id="status_descr_4">PENDING</div>
+			<div class="red error" id="status_indicator_4"></div>
+			<div class="status_descr" id="status_descr_4">Failed</div>
 			
 			<!-- BAR 5: failed step 2 -->
 			<div class="bar_bg" id="bar_bg_5"></div>
-			<div class="failed_indicator" id="start_5"></div>
-			<div class="failed_indicator" id="middle_5"></div>
-			<div class="default_indicator" id="end_5"></div>
+			<div class="indicator red passed" id="start_5"></div>
+			<div class="indicator red error" id="middle_5"></div>
+			<div class="indicator grey" id="end_5"></div>
 			<progress class="failed_bar" id="bar_5" max="100" value="50"></progress>
-			<div class="failed_indicator" id="status_indicator_5"></div>
-			<div class="status_descr" id="status_descr_5">PENDING</div>		
-		<div>
+			<div class="red error" id="status_indicator_5"></div>
+			<div class="status_descr" id="status_descr_5">Failed</div>		
 	</body>
 </html>
